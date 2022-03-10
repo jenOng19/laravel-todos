@@ -1,5 +1,6 @@
 <?php
 
+//package used to generate fake data
 use Faker\Generator as Faker;
 
 /*
@@ -13,7 +14,11 @@ use Faker\Generator as Faker;
 |
 */
 
+//can also do 'App\User' which defines the path to the class, App\User::class gives you the string version of the class
+//different syntax that does the same thing
+//define a factory for the App\User class
 $factory->define(App\User::class, function (Faker $faker) {
+    //defines an array that generates fake data that can be used to put in the database
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
