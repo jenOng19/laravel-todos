@@ -17,3 +17,6 @@ Route::get('/', function () {
 
 //get list of todos
 Route::get('todos', 'TodosController@index');
+
+//get the specific todo
+Route::get('todos/{todo}', 'TodosController@show');
