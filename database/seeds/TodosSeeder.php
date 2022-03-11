@@ -12,7 +12,7 @@ class TodosSeeder extends Seeder
     public function run()
     {
         //factory(App\Todo::class)->create(); - Creates one instance of TodoFactory aka creates one todo
-        //factory(App\Todo::class, 10)->create(); - Creates multiple todos, in this case 10
-        factory(App\Todo::class, 10)->create();
+        //factory(App\Todo::class, 5)->create(); - Creates multiple todos, in this case 5
+        factory(App\Todo::class, 5)->create();
     }
 }
