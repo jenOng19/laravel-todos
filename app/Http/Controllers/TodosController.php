@@ -32,4 +32,35 @@ class TodosController extends Controller
         //this is short form for php's die(var_dump($todoId))
         // dd($todoId);
     }
+
+    public function create()
+    {
+        return view('todos.create');
+    }
+
+    public function store()
+    {
+        //input fields must have name attr to get value
+
+        //request()->all() will show you everything the client input in the form
+        // dd(request()->all());
+
+        $data = request()->all();
+
+        //new Todo model
+        $todo = new Todo();
+
+        $todo->name = $data['name'];
+
+        $todo->description = $data['description'];
+
+        $todo->completed = false;
+
+        //make db query to save todo to db
+        $todo->save();
+
+        //after saving, redirect user to todos page
+        return redirect('/todos');
+
+    }
 }

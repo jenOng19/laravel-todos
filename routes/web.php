@@ -20,3 +20,9 @@ Route::get('todos', 'TodosController@index');
 
 //get the specific todo
 Route::get('todos/{todo}', 'TodosController@show');
+
+//display form to create todo
+Route::get('new-todos', 'TodosController@create');
+
+//submit todo
+Route::post('store-todos', 'TodosController@store');
