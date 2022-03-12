@@ -23,9 +23,12 @@ class TodosController extends Controller
     }
 
     //argument $todoId is the specific todo that gets passed in the route
-    public function show($todoId)
+    // -Todo $todo replaces the logic $todo = Todo::find($todoId);
+
+    //receive parameter $todo of type Todo, this detects that the route has a dynamic property {todo}
+    public function show(Todo $todo)
     {
-        $todo = Todo::find($todoId);
+        // $todo = Todo::find($todoId);
 
         return view('todos.show')->with('todo', $todo);
         //dd(die dump) kills application and dump contents of variable, it is a laravel thing
@@ -73,15 +76,15 @@ class TodosController extends Controller
 
     }
 
-    public function edit($todoId)
+    public function edit(Todo $todo)
     {
-        $todo = Todo::find($todoId);
+        // $todo = Todo::find($todoId);
 
         //return the edit page with the todo that was found
         return view('todos.edit')->with('todo', $todo);
     }
 
-    public function update($todoId)
+    public function update(Todo $todo)
     {
         $this->validate(request(), [
             'name' => 'required|min:6|max:12',
@@ -94,7 +97,7 @@ class TodosController extends Controller
         //1. create hidden input in view file that gets the id and that will be passed to server
         //2. change route to get id from url
 
-        $todo = Todo::find($todoId);
+        // $todo = Todo::find($todoId);
 
         $todo->name = $data['name'];
 
@@ -105,9 +108,9 @@ class TodosController extends Controller
         return redirect('/todos');
     }
 
-    public function destroy($todoId)
+    public function destroy(Todo $todo)
     {
-        $todo = Todo::find($todoId);
+        // $todo = Todo::find($todoId);
 
         $todo->delete();
 
