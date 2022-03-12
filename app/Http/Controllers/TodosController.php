@@ -72,4 +72,36 @@ class TodosController extends Controller
         return redirect('/todos');
 
     }
+
+    public function edit($todoId)
+    {
+        $todo = Todo::find($todoId);
+
+        //return the edit page with the todo that was found
+        return view('todos.edit')->with('todo', $todo);
+    }
+
+    public function update($todoId)
+    {
+        $this->validate(request(), [
+            'name' => 'required|min:6|max:12',
+            'description' => 'required'
+        ]);
+
+        $data = request()->all();
+
+        //Two Ways:
+        //1. create hidden input in view file that gets the id and that will be passed to server
+        //2. change route to get id from url
+
+        $todo = Todo::find($todoId);
+
+        $todo->name = $data['name'];
+
+        $todo->description = $data['description'];
+
+        $todo->save();
+
+        return redirect('/todos');
+    }
 }
