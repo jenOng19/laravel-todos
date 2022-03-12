@@ -45,6 +45,15 @@ class TodosController extends Controller
         //request()->all() will show you everything the client input in the form
         // dd(request()->all());
 
+        //validate data from form to make sure there are values before saving
+        //validate function comes from Controller that we extend from
+        //if you check Controller.php you'll see ValidateRequests
+        //validate() takes in an instance of the data we want to validate
+        $this->validate(request(), [
+            'name' => 'required|min:6|max:12',
+            'description' => 'required'
+        ]);
+
         $data = request()->all();
 
         //new Todo model
